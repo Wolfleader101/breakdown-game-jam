@@ -8,10 +8,11 @@ using UnityEngine.InputSystem;
 public class CarController : MonoBehaviour
 {
     [SerializeField] private float carSpeed = 10f;
-    
+    [SerializeField] private float maxSpeed = .05f;
+
     private Vector3 _moveDir = Vector2.zero;
     private Rigidbody _rb;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,14 +26,21 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move(_moveDir, carSpeed);
+        if (_rb.velocity.magnitude < maxSpeed)
+        {
+            Move(_moveDir, carSpeed);
+        }
+        else
+        {
+            var velocity = _rb.velocity;
+            velocity = new Vector3(velocity.x, velocity.y, maxSpeed);
+            _rb.velocity = velocity;
+        }
     }
-    
+
     private void Move(Vector3 dir, float speed)
     {
-        Debug.Log(dir);
-        //_rb.velocity = dir * speed;
-        _rb.AddRelativeTorque();
+        _rb.AddRelativeForce(dir * speed);
     }
 
     public void OnMove(InputAction.CallbackContext context)
