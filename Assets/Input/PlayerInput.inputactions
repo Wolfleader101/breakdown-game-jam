@@ -6,10 +6,18 @@
             "id": "bd61523b-915d-486f-894c-8a2e7fa9e7b3",
             "actions": [
                 {
-                    "name": "Movement",
+                    "name": "Acceleration Direction",
                     "type": "Value",
                     "id": "1c86e7ec-72bc-4953-acc2-d033e698e8c8",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Turn Direction",
+                    "type": "Value",
+                    "id": "58aac24b-c245-4ad2-ae65-d8e24c01409b",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
                 },
@@ -24,61 +32,6 @@
             ],
             "bindings": [
                 {
-                    "name": "WASD",
-                    "id": "8bde0b96-062f-48fa-b023-79e05c4d27dc",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "50a4c58c-bc32-4a08-a4da-7b067026fc94",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard/Mouse",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "78acedc8-38f0-4427-a504-715dca31e91d",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard/Mouse",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "bce91ce3-4684-48cb-8c15-62f41916d0af",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard/Mouse",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "1b48a039-16bf-490d-8110-b7868c314281",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard/Mouse",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "4e26409c-42bd-44d0-b9f7-1c3743b8dabf",
                     "path": "<Keyboard>/space",
@@ -88,6 +41,72 @@
                     "action": "Brake",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "AD",
+                    "id": "5632d3bb-22a9-424e-a9b0-293e1de89288",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn Direction",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "3a9a01d7-f8db-4b01-84c6-b60c0e4c9960",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "Turn Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "6fe00a7b-eedb-48d7-809f-b5636db3ad5e",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "Turn Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "WS",
+                    "id": "f24720d3-1fad-45ee-82f9-a2a9c002f65b",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Acceleration Direction",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "positive",
+                    "id": "9ce036ef-309c-4cf3-8178-f33f337fe497",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "Acceleration Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "negative",
+                    "id": "8362a5c5-b70c-4dbc-ab8c-bc7487382bef",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "Acceleration Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

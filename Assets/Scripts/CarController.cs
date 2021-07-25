@@ -4,52 +4,66 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody))]
 public class CarController : MonoBehaviour
 {
-    [SerializeField] private float carSpeed = 10f;
-    [SerializeField] private float maxSpeed = .05f;
+    [SerializeField] private float forwardAccel = 20f;
+    [SerializeField] private float reverseAccel = 10f;
+    [SerializeField] private float turnStrength = 50f;
+    [SerializeField] private float maxSpeed =  1000f;
+    [SerializeField] private Rigidbody rb;
 
-    private Vector3 _moveDir = Vector2.zero;
-    private Rigidbody _rb;
+    private float _accelDir = 0f;
+    private float _turnDir = 0f;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        _rb = GetComponent<Rigidbody>();
+        rb.transform.parent = null;
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f,_turnDir * turnStrength * Time.deltaTime, 0f));
+        transform.position = rb.transform.position;
+        
+      
     }
 
     private void FixedUpdate()
     {
-        if (_rb.velocity.magnitude < maxSpeed)
-        {
-            Move(_moveDir, carSpeed);
-        }
-        else
-        {
-            var velocity = _rb.velocity;
-            velocity = new Vector3(velocity.x, velocity.y, maxSpeed);
-            _rb.velocity = velocity;
-        }
+        Move(_accelDir, forwardAccel);
+        // if (rb.velocity.magnitude < maxSpeed)
+        // {
+        //     Move(_moveDir, forwardAccel);
+        // }
+        // else
+        // {
+        //     var velocity = rb.velocity;
+        //     velocity = new Vector3(velocity.x, velocity.y, maxSpeed);
+        //     rb.velocity = velocity;
+        // }
     }
 
-    private void Move(Vector3 dir, float speed)
+    private void Move(float accelDir, float speed)
     {
-        _rb.AddRelativeForce(dir * speed);
+        var dir = transform.forward * accelDir;
+        rb.AddForce(dir * (speed * 1000f));
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    public void OnAccelerate(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            var val = context.ReadValue<Vector2>();
-            _moveDir = new Vector3(val.x, 0, val.y);
-        }
+       // if (context.started)
+        //{
+            _accelDir = context.ReadValue<float>();
+        //}
+    }
+    public void OnTurn(InputAction.CallbackContext context)
+    {
+       // if (!context.started) return;
+        var val = context.ReadValue<float>();
+        _turnDir = val;
     }
 
 
