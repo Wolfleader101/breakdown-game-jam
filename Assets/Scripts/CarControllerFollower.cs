@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SphereOffsetFollower : MonoBehaviour
+public class CarControllerFollower : MonoBehaviour
 {
     [SerializeField] private GameObject car;
 
